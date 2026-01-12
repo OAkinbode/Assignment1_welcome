@@ -1,45 +1,45 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
-type Player = "X" | "O" | null
+type Player = "X" | "O" | null;
 
-export function TicTacToe() {
-  const [board, setBoard] = useState<Player[]>(Array(9).fill(null))
-  const [isXNext, setIsXNext] = useState(true)
-  const [gameOver, setGameOver] = useState(false)
+export default function TicTacToe() {
+  const [board, setBoard] = useState<Player[]>(Array(9).fill(null));
+  const [isXNext, setIsXNext] = useState(true);
+  const [gameOver, setGameOver] = useState(false);
 
-  const winner = calculateWinner(board)
-  const currentPlayer = isXNext ? "X" : "O"
+  const winner = calculateWinner(board);
+  const currentPlayer = isXNext ? "X" : "O";
 
   const handleClick = (index: number) => {
-    if (board[index] || winner || gameOver) return
+    if (board[index] || winner || gameOver) return;
 
-    const newBoard = [...board]
-    newBoard[index] = currentPlayer
-    setBoard(newBoard)
-    setIsXNext(!isXNext)
+    const newBoard = [...board];
+    newBoard[index] = currentPlayer;
+    setBoard(newBoard);
+    setIsXNext(!isXNext);
 
     // Check if it's a draw
     if (newBoard.every((cell) => cell !== null) && !calculateWinner(newBoard)) {
-      setGameOver(true)
+      setGameOver(true);
     }
-  }
+  };
 
   const resetGame = () => {
-    setBoard(Array(9).fill(null))
-    setIsXNext(true)
-    setGameOver(false)
-  }
+    setBoard(Array(9).fill(null));
+    setIsXNext(true);
+    setGameOver(false);
+  };
 
-  let status = ""
+  let status = "";
   if (winner) {
-    status = `Winner: ${winner}`
+    status = `Winner: ${winner}`;
   } else if (gameOver) {
-    status = "It's a draw!"
+    status = "It's a draw!";
   } else {
-    status = `Next player: ${currentPlayer}`
+    status = `Next player: ${currentPlayer}`;
   }
 
   return (
@@ -47,8 +47,12 @@ export function TicTacToe() {
       {/* Status Display */}
       <div className="text-xl font-semibold text-center min-h-[2rem]">
         {winner && <span className="text-success">{status}</span>}
-        {gameOver && !winner && <span className="text-muted-foreground">{status}</span>}
-        {!winner && !gameOver && <span className="text-foreground">{status}</span>}
+        {gameOver && !winner && (
+          <span className="text-muted-foreground">{status}</span>
+        )}
+        {!winner && !gameOver && (
+          <span className="text-foreground">{status}</span>
+        )}
       </div>
 
       {/* Game Board */}
@@ -60,17 +64,29 @@ export function TicTacToe() {
             className="aspect-square bg-secondary hover:bg-accent transition-colors rounded-lg flex items-center justify-center text-4xl font-bold disabled:cursor-not-allowed border-2 border-border"
             disabled={!!cell || !!winner || gameOver}
           >
-            {cell && <span className={cell === "X" ? "text-primary" : "text-accent-foreground"}>{cell}</span>}
+            {cell && (
+              <span
+                className={
+                  cell === "X" ? "text-primary" : "text-accent-foreground"
+                }
+              >
+                {cell}
+              </span>
+            )}
           </button>
         ))}
       </div>
 
       {/* Reset Button */}
-      <Button onClick={resetGame} size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90">
+      <Button
+        onClick={resetGame}
+        size="lg"
+        className="bg-primary text-primary-foreground hover:bg-primary/90"
+      >
         New Game
       </Button>
     </div>
-  )
+  );
 }
 
 function calculateWinner(board: Player[]): Player {
@@ -83,13 +99,17 @@ function calculateWinner(board: Player[]): Player {
     [2, 5, 8],
     [0, 4, 8],
     [2, 4, 6],
-  ]
+  ];
 
   for (const [a, b, c] of lines) {
     if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-      return board[a]
+      return board[a];
     }
   }
 
-  return null
+  return null;
+}
+
+export function SecondComp() {
+  return <div>Second Component</div>;
 }
