@@ -22,7 +22,8 @@ export default function Home() {
           </h2>
           <TicTacToe />
           <div className="flex items-center justify-center h-64 text-foreground text-lg italic">
-            Did you really expect to see a tic tac toe game here?
+            Did you really expect to see a tic tac toe game here? Well, you are
+            in luck!
           </div>
         </div>
         {/* <Suprise /> */}
