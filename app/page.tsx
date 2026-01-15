@@ -20,7 +20,7 @@ export default function Home() {
           <h2 className="text-2xl font-semibold text-center mb-6 text-foreground">
             Play Tic-Tac-Toe
           </h2>
-          {/* <TicTacToe /> */}
+          <TicTacToe />
           <div className="flex items-center justify-center h-64 text-foreground text-lg italic">
             Did you really expect to see a tic tac toe game here?
           </div>
